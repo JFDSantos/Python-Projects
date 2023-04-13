@@ -1,29 +1,30 @@
 class Conta:
     def __init__(self, numero, titular, saldo, limite):
-        self.__numero = numero
-        self.__titular = titular
-        self.__saldo = saldo
-        self.__limite = limite
+        self._numero = numero
+        self._titular = titular
+        self._saldo = saldo
+        self._limite = limite
     
     def sacar(self, valor):
-        self.__saldo -= valor
+        self._saldo -= valor
     
     def depositar(self, valor):
-        self.__saldo += valor
+        self._saldo += valor
     
     @property
     def numero(self):
-        return self.__numero
+        return self._numero
     
     @property
     def saldo(self):
-        return self.__saldo
+        return self._saldo
+    
 
     @property
     def titular(self):
-        return self.__titular
+        return self._titular
 
     @property
     def limite(self):
-        return self.__limite
+        return self._limite
     

@@ -1,37 +1,65 @@
 from conta import Conta
 import os
-contas = {}
+import time
 sair = 0
-count = 0
+
+ContaAtual = []
 
 while sair != 1:
     os.system('cls') or None
     print("BEM VINDO AO CAIXA!")
 
-    print("1 - Cadastrar Conta")
-    print("2 - Sacar")
-    print("3 - Depositar")
-    print("4 - Extrato")
-    print("5 - Verificar contas cadastradas")
-    print("6 - Sair")
+    print("\n1 - Entrar na Conta")
+    print("2 - Sair")
 
-    resposta = int(input("Escolha uma opção acima:"))
+    try:
+        resposta = int(input("\nEscolha uma opção acima: "))
+    except:
+        resposta = 2
 
     match resposta:
         case 1:
-            titular = input("Digite o nome do titular: ")
-            Conta1 = Conta(count, titular, 0.0, 1000.0)
-            contas[count] = {"Titular" : Conta1.titular , "Saldo": Conta1.saldo , "Limite" : Conta1.limite} 
-            count = count + 1
-        case 5:
-            continuar = 0
-            while continuar != 1:
-                for c in contas:
-                    print(f"Conta de número: {c}")
-                    print(contas[c])
-                continuar = int(input("Se deseja voltar digite 1: "))
+            resposta = 0
+            titular = input("\nDigite o nome do titular: ")
+            numero = input("Digite o número da sua conta: ")
+            Conta1 = Conta(numero, titular, 0.0, 1000.0)
+            os.system('cls') or None
+            while sair != 1:
+                print("\nFUNCIONALIDADES: ")
+                print("1 - Sacar")
+                print("2 - Depositar")
+                print("3 - Extrato")
+                print("4 - Sair")
 
-        case 6:
+                resposta =  int(input("\nEscolha uma opção acima: "))
+
+            
+                match resposta:
+                    case 1:
+                        valor = int(input("\nDigite o valor que deseja sacar: R$"))
+                        if valor < Conta1.saldo:
+                            Conta1.sacar(valor)
+                            print("\nSaque realizado!")
+                        else:
+                            print("\nDinheiro insuficiente")
+                        
+                        time.sleep(3)
+                    case 2:
+                        valor = int(input("\nDigite o valor que deseja depositar: R$"))
+                        Conta1.depositar(valor)
+                        print("\nValor depositado!")
+                        time.sleep(3)
+                    case 3:
+                        voltar = 0
+
+                        while voltar != 1:
+                            print(f"Titular: {Conta1.titular}")
+                            print(f"Conta:   {Conta1.numero}")
+                            print(f"Saldo:   R${Conta1.saldo}")
+                            voltar = int(input("\nPara voltar digite 1: "))
+                    case 4:
+                        sair = 1
+        case 2:
             sair = 1
 
-print("Operações finalizadas!\nSistema Finalizando!")
+print("\nOperações finalizadas!\tSistema Finalizando!")
