@@ -50,7 +50,5 @@ musica1.dar_likes()
 musicas = [musica1,podcast1]
 minha_playlist = Playlist("minha_playlist", musicas)
 
-
-
 for musicas in minha_playlist:
     print(musicas)
